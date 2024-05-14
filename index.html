@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SIGRutas</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+        <!-- <link rel="shortcut icon" href="img/ico/logo_emtat-48x48.png" /> -->
+        <link rel="shortcut icon" href="img/ico/logo_emtat-48x48.png" />
+        <!-- font-awesome -->
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="dist/leaflet.awesome-markers.css" /> 
+        <link media="all" rel="stylesheet" type="text/css" href="css/materialdesignicons.css" /> 
+        <link media="all" rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="leaflet/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="css/own_style.css" />
+        <link rel="stylesheet" type="text/css" href="css/L.Control.Sidebar.css" />
+        <link rel="stylesheet" type="text/css" href="css/easy-button.css" />
+		<link rel="stylesheet" type="text/css" href="fullscreen/leaflet.fullscreen.css" />
+				
+        <style type="text/css">
+            .combo{
+                float: right;
+                margin-right: 10px;
+                margin-top: 10px;
+                margin-left: 60px;
+                background: none repeat scroll 0 0 rgba(255, 255, 255, 0.8);
+                border-radius: 5px;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                display: block;
+                font: 14px/16px Arial,Helvetica,sans-serif;
+                padding: 6px 8px;
+                cursor: auto;
+                clear: both;
+                pointer-events: auto;
+                position: relative;
+                z-index: 800;               
+            }
+            .btn {
+                border: 1px solid #d5d5d5;
+                border-radius: 8px;
+                background-image: linear-gradient(#fcfcfc, #eee);
+                color: #333;
+                cursor: pointer;
+                font: 14px/16px Arial,Helvetica,sans-serif;
+                padding: 6px 12px;
+                vertical-align: middle;
+            }
+            .aligncenter {
+                display: block;
+                margin: 0 auto 1.2rem;
+            }
+        </style>
+
+    </head>
+    <body>		
+		<div id="map" style="background-color: #abdef2;">
+		<div id="combo" class="combo leaflet-right" >		
+            <form>
+                <i class="mdi mdi-bus fa-lg "></i>			
+                <select name="rutas" id="rutas">
+                    <option value="default">--Rutas de Omnibus Públicos--</option>  
+                    <option value="201I">201 Gerona Patria Ida</option>
+                    <option value="201R">201 Gerona Patria Regreso</option>
+                    <option value="202I">202 Local Gerona Ida</option>
+                    <option value="202R">202 Local Gerona Regreso</option>
+                    <option value="203I">203 Gerona Aeropuerto Ida</option>
+                    <option value="203R">203 Gerona Aeropuerto Regreso</option>
+                    <option value="204I">204 Gerona Chacón Comunidad 53 Ida</option>
+                    <option value="204R">204 Gerona Chacón Comunidad 53 Regreso</option>
+                    <option value="205I">205 Local La Fé Ida</option>
+                    <option value="205R">205 Local La Fé Regreso</option>
+                    <option value="431I">431 Gerona La Fé Ida</option>
+                    <option value="431R">431 Gerona La Fé Regreso</option>
+                    <option value="432I">432 Gerona Aeropuerto La Fé Ida</option>
+                    <option value="432R">432 Gerona Aeropuerto La Fé Regreso</option>
+                    <option value="433I">433 La Fé La Reforma Ida</option>
+                    <option value="433R">433 La Fé La Reforma Regreso</option>
+                    <option value="435I">435 La Fé La Tumbita Ida</option>
+                    <option value="435R">435 La Fé La Tumbita Regreso</option>
+                    <option value="436I">436 Gerona Tumbita La Fé Ida</option>
+                    <option value="436R">436 Gerona Tumbita La Fé Regreso</option>
+                    <option value="437I">437 La Fé Demajagua Ida</option>
+                    <option value="437R">437 La Fé Demajagua Regreso</option>
+                    <option value="438I">438 Gerona Playa Bibijagua Ida</option>
+                    <option value="438R">438 Gerona Playa Bibijagua Regreso</option>
+                    <option value="439I">439 Gerona Demajagua Atanagildo Ida</option>
+                    <option value="439R">439 Gerona Demajagua Atanagildo Regreso</option>
+                    <option value="440I">440 Gerona Argelia Ida</option>
+                    <option value="440R">440 Gerona Argelia Regreso</option>
+                    <option value="441I">441 Gerona Colony Ida</option>
+                    <option value="441R">441 Gerona Colony Regreso</option>
+                    <option value="701I">701 Gerona Libertad Ida</option>
+                    <option value="701R">701 Gerona Libertad Regreso</option>
+                    <option value="702I">702 Gerona Ciro Redondo Ida</option>
+                    <option value="702R">702 Gerona Ciro Redondo Regreso</option>
+                    <option value="703I">703 Gerona La Mina Ida</option>
+                    <option value="703R">703 Gerona La Mina Regreso</option>
+                    <option value="704I">704 Gerona Cocodrilo Ida</option>
+                    <option value="704R">704 Gerona Cocodrilo Regreso</option>
+                    <option value="707I">707 La Fé Mella Cítrico Ida</option>
+                    <option value="707R">707 La Fé Mella Cítrico Regreso</option>
+                    <option value="734I">734 La Fé Mella Vaquero Ida</option>
+                    <option value="734R">734 La Fé Mella Vaquero Regreso</option>
+                    <option value="CatamaranI">Catamarán Ida</option>
+                    <option value="CatamaranR">Catamarán Regreso</option>
+                </select>
+                <input type="button" class= "btn" NAME="Boton1" value="Recorrido" onclick="animar()">
+			</form>			
+		</div> 
+		<div id="horario"></div>
+		<div id="ayuda"></div>
+        <div id="contactos"></div>
+		
+		</div>        
+		
+		<script src="leaflet/leaflet.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="plugin/L.Polyline.SnakeAnim.js"></script>
+        <script src="plugin/L.Control.Sidebar.js"></script>
+        <script src="plugin/easy-button.js"></script>		
+		<script src="fullscreen/Leaflet.fullscreen.min.js"></script>
+<!-- awesome -->
+		<script src="dist/leaflet.awesome-markers.js"></script>
+
+        <script src="data/exp_paradastodas.js"></script>
+        <script src="data/exp_rutas.js"></script>
+        <script src="data/exp_place.js"></script>
+        <script src="data/Controlador.js"></script>
+    </body>
+</html>
